@@ -10,10 +10,6 @@
 
   <div class="addPostBtnWrapper">
     <div class="navWrapper">
-      <router-link to="/">
-        <blog-btn title="Main page" />
-      </router-link>
-
       <blog-btn title="Add new" @click="openModal" btnType="btn-add-post" />
     </div>
     <post-select v-model="selectedOption" :options="filterOptions" />

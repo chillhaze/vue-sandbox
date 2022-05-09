@@ -11,10 +11,6 @@
 
   <div class="addPostBtnWrapper">
     <div class="navWrapper">
-      <router-link to="/">
-        <blog-btn title="Main page" />
-      </router-link>
-
       <blog-btn title="Add new" @click="openModal" btnType="btn-add-post" />
     </div>
     <post-select
@@ -32,7 +28,7 @@
 
   <post-list
     v-if="!isPostsLoading"
-    @delete="deletePost"
+    @delete="setPostToDelete"
     :posts="sortedAndFilteredPosts"
     :isPostsLoading="isPostsLoading"
     @load="loadMorePosts"
@@ -64,6 +60,8 @@ export default {
       setCurrentPage: 'post/setCurrentPage',
       setSearchQuery: 'post/setSearchQuery',
       setSelectedOption: 'post/setSelectedOption',
+      setNewPost: 'post/setNewPost',
+      setPostToDelete: 'post/setPostToDelete',
     }),
     ...mapActions({
       getPosts: 'post/getPosts',
@@ -72,16 +70,15 @@ export default {
     openModal() {
       this.isModalVisible = true;
     },
+    closeModal() {
+      this.isModalVisible = false;
+    },
     createPost(post) {
       if (post.title !== '' && post.body !== '') {
-        this.posts.push(post);
+        this.setNewPost(post);
         this.isModalVisible = false;
       }
     },
-    deletePost(postToDelete) {
-      this.posts = this.posts.filter((post) => post.id !== postToDelete.id);
-    },
-
     changeCurrentPage(pageNumber) {
       this.setCurrentPage(pageNumber);
     },

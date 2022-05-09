@@ -2,9 +2,13 @@
   <div class="pageNavbar">
     <div class="navLogo" @click="$router.push('/')">Vue 3</div>
     <div class="navButtons">
-      <blog-btn title="Main" @click="$router.push('/')" />
-      <!-- <blog-btn title="Blog" @click="$router.push('/blog')" /> -->
-      <blog-btn title="Blog" @click="$router.push('/store')" />
+      <blog-btn title="Main" @click="$router.push('/')" path="/" />
+      <blog-btn title="Blog" @click="$router.push('/blog')" path="/blog" />
+      <blog-btn
+        title="Blog with store"
+        @click="$router.push('/store')"
+        path="/store"
+      />
     </div>
   </div>
 </template>
@@ -18,7 +22,7 @@ export default {
 
 <style>
 .pageNavbar {
-  height: 50px;
+  padding: 25px 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,7 +39,7 @@ export default {
   display: flex;
 }
 
-.navButtons div:nth-last-of-type(1) {
+.navButtons div {
   margin-left: 10px;
 }
 </style>

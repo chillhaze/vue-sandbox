@@ -12,7 +12,7 @@
     <blog-btn class="loadMoreBtn" title="Load more" @click="loadMore" />
   </div>
   <div v-else-if="!isPostsLoading" class="emptyList">
-    <h2 class="emptyListTitle">List is empty</h2>
+    <h2 class="emptyListTitle">{{ `List is empty :(` }}</h2>
   </div>
 </template>
 
@@ -85,5 +85,11 @@ export default {
 /* -------------------------- */
 .loadMoreBtn {
   margin-top: 20px;
+}
+
+.emptyListTitle {
+  margin-top: 40px;
+  color: teal;
+  text-align: center;
 }
 </style>

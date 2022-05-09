@@ -5,7 +5,7 @@
       :title="page.toString()"
       btnType="btn-pagination"
       :key="page"
-      :currentPage="currentPage === page"
+      :onCurrentPage="currentPage === page"
       @click="changePage(page)"
     />
   </div>

@@ -6,11 +6,12 @@
       <div><span class="textAccent">Description: </span>{{ post.body }}</div>
     </div>
     <div class="buttonsWrapper">
-      <blog-btn
+      <blog-btn btnType="post-item" @click="openPost(post)" title="Open" />
+      <!-- <blog-btn
         btnType="post-item"
         @click="$router.push(`/post/${post.id}`)"
         title="Open"
-      />
+      /> -->
       <blog-btn
         btnType="post-item"
         @click="$emit('delete', post)"
@@ -23,11 +24,22 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
   props: {
     post: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    ...mapMutations({
+      setPostToOpen: 'post/setPostToOpen',
+    }),
+    openPost(post) {
+      console.log(post);
+      this.setPostToOpen(post);
+      this.$router.push(`/post/${post.id}`);
     },
   },
 };

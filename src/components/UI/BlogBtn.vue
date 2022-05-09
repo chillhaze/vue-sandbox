@@ -4,9 +4,11 @@
       class="postBtn"
       :class="{
         paginationBtn: btnType === 'btn-pagination',
-        paginationBtn__current: currentPage,
+        paginationBtn__current: onCurrentPage,
         addPostBtn: btnType === 'btn-add-post',
         postItemBtn: btnType === 'post-item',
+        mainPageBlogBtn: btnType === 'main-blog',
+        isActive: $route.path === this.path,
       }"
     >
       {{ this.title }}
@@ -25,8 +27,11 @@ export default {
     btnType: {
       type: String,
     },
-    currentPage: {
+    onCurrentPage: {
       type: Boolean,
+    },
+    path: {
+      type: String,
     },
   },
 };
@@ -34,12 +39,18 @@ export default {
 
 <style>
 .postBtn {
+  position: relative;
   color: #fff;
   padding: 5px 35px;
   background-color: teal;
   border: 1px solid teal;
   border-radius: 3px;
   cursor: pointer;
+}
+.postBtn:hover {
+  color: teal;
+  background-color: white;
+  transition: 200ms linear;
 }
 
 .addPostBtn {
@@ -63,5 +74,19 @@ export default {
 
 .postItemBtn {
   width: 100%;
+}
+
+.mainPageBlogBtn {
+  width: 195px;
+}
+
+.isActive {
+  color: teal;
+  background-color: #9baabb;
+}
+.isActive:hover {
+  color: tomato;
+  background-color: #fff;
+  border: 1px solid tomato;
 }
 </style>

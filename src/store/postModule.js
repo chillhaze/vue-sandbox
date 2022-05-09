@@ -15,6 +15,7 @@ export const postModule = {
     currentPage: 1,
     limit: 10,
     totalPages: 0,
+    chosenPost: {},
   }),
   getters: {
     sortedPosts(state) {
@@ -31,6 +32,9 @@ export const postModule = {
     },
     allPosts(state) {
       return state.posts;
+    },
+    getChosenPost(state) {
+      return state.chosenPost;
     },
   },
   mutations: {
@@ -62,6 +66,15 @@ export const postModule = {
       } else {
         state.limit = credentials.data;
       }
+    },
+    setNewPost(state, post) {
+      state.posts.push(post);
+    },
+    setPostToDelete(state, postToDelete) {
+      state.posts = state.posts.filter((post) => post.id !== postToDelete.id);
+    },
+    setPostToOpen(state, postToOpen) {
+      state.chosenPost = postToOpen;
     },
   },
   actions: {
